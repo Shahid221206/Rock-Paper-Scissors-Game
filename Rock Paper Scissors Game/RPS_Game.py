@@ -3,7 +3,11 @@ import random
 def get_user_choice():
     while True:
         try:
-            choice = int(input("Enter your choice (1 for Rock, 2 for Paper, 3 for Scissors): "))
+            print("\nChoose your weapon:")
+            print("1. Rock")
+            print("2. Paper")
+            print("3. Scissors")
+            choice = int(input("Enter your choice: "))
             if choice in [1, 2, 3]:
                 return choice
             else:
@@ -27,6 +31,13 @@ def display_choices(user_choice, computer_choice):
     print(f"\nYou chose: {choices[user_choice]}")
     print(f"Computer chose: {choices[computer_choice]}")
 
+def display_ascii(choice):
+    rock = "    _______\n---'   ____)\n      (_____)\n      (_____)\n      (____)\n---.__(___)"
+    paper = "    _______\n---'   ____)____\n          ______)\n          _______)\n         _______)\n---.__________)"
+    scissors = "    _______\n---'   ____)____\n          ______)\n       __________)\n      (____)\n---.__(___)"
+    choices = {1: rock, 2: paper, 3: scissors}
+    print(choices[choice])
+
 def main():
     print("Welcome to Rock, Paper, Scissors!\n")
     rounds = int(input("How many rounds do you want to play? "))
@@ -37,6 +48,8 @@ def main():
         user_choice = get_user_choice()
         computer_choice = get_computer_choice()
         display_choices(user_choice, computer_choice)
+        display_ascii(user_choice)
+        display_ascii(computer_choice)
         result = determine_winner(user_choice, computer_choice)
         print(result)
         if "win" in result:
